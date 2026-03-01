@@ -17,6 +17,7 @@ This service is designed to handle high-frequency market data updates and provid
 *   **In-Memory Storage**: Stores aggregated candle data in thread-safe in-memory maps for low-latency access.
 *   **History API**: Provides a REST endpoint to query historical candle data.
 *   **Data Simulation**: Includes a built-in producer that generates random market data for testing purposes.
+*   **API Documentation**: Integrated Swagger UI for easy API exploration and testing.
 
 ## Tech Stack
 *   **Java**: 21
@@ -25,6 +26,7 @@ This service is designed to handle high-frequency market data updates and provid
 *   **Build Tool**: Maven
 *   **Testing**: JUnit 5, Mockito
 *   **Utilities**: Lombok
+*   **Documentation**: SpringDoc OpenAPI (Swagger)
 
 ## Assumptions & Trade-offs
 
@@ -48,8 +50,7 @@ This service is designed to handle high-frequency market data updates and provid
 ### Prerequisites
 *   Java 21 SDK
 *   Maven
-*   Docker (required for running Integration Tests via Testcontainers)
-*   A running Kafka instance (for running the app locally, unless using the integration test)
+*   A running Kafka instance (for running the app locally)
 
 ### Running the Application
 
@@ -64,6 +65,10 @@ This service is designed to handle high-frequency market data updates and provid
     Once started, the internal `MarketDataProducer` will begin publishing simulated data to the `market-data` topic, and the `MarketDataListener` will consume and aggregate it.
 
 ### API Usage
+
+**Swagger UI**:
+You can explore and test the API using the Swagger UI at:
+`http://localhost:8080/swagger-ui/index.html`
 
 **Endpoint**: `GET /history`
 
@@ -93,7 +98,7 @@ curl "http://localhost:8080/history?symbol=BTC-USD&interval=1m&from=1620000000&t
 
 ## Running Tests
 
-The project includes both Unit Tests and Integration Tests.
+The project includes Unit Tests
 
 ### Unit Tests
 Tests the core aggregation logic in `CandleService`.
